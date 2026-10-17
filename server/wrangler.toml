@@ -7,7 +7,7 @@ compatibility_date = "2025-09-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "dropzone"
-database_id = "eca9d404-4ca0-46b6-9ef5-e24b87ad249a"
+database_id = "3c0971b3-869a-440a-9963-b52c0ae23a6e"
 
 # Токен бота хранится как секрет: npx wrangler secret put BOT_TOKEN
 # (вводит владелец сам, в коде и в git его нет)
