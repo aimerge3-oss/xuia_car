@@ -1,14 +1,14 @@
 // ===== Промокоды: ввод игроком (раздел «Меню») и управление в админ-панели =====
 // Проверяет и выдаёт награду только сервер; в локальном режиме промокоды не работают.
 
-const CHANNEL_LINK = 'https://t.me/channel_guardian_bot?start=CHK-1004402834072';   // вход в канал через проверку «не бот»
+const CHANNEL_LINK = (globalThis.CHANNEL_INFO && CHANNEL_INFO.url) || 'https://t.me/ASQ_CAR_DROP';   // канал игры @ASQ_CAR_DROP
 let promoFx = '';   // показ полученной награды под полем ввода
 
 function renderPromo() {
   return `<div class="card promo-card">
     <div class="promo-hero">${emo('🎟️', 52)}</div>
     <h3>Промокод</h3>
-    <p class="muted">Свежие коды — в канале <button class="link" data-act="open-channel">@dropezone_game</button></p>
+    <p class="muted">Свежие коды — в канале <button class="link" data-act="open-channel">@${(globalThis.CHANNEL_INFO && CHANNEL_INFO.username) || 'ASQ_CAR_DROP'}</button></p>
     <input id="promo-input" class="promo-input" placeholder="Введи промокод" maxlength="32"
       autocomplete="off" autocapitalize="characters" spellcheck="false">
     <button class="btn" data-act="promo-redeem">Активировать</button>

@@ -471,7 +471,7 @@ const MUSEUM = { startSlots: 4, maxSlots: 20, firstPrice: 500e3, growth: 2 };
 // ===== Админ-панель =====
 // Открывается 7 быстрыми нажатиями на заголовок экрана. В Telegram — только для этих ID.
 // В обычном браузере (не в Telegram) открывается всегда — для тестов: там меняется только свой прогресс.
-const ADMIN_IDS = [1217682856];
+const ADMIN_IDS = [530835491];
 
 // ===== Уровни профиля и задания =====
 // Опыт за действия
@@ -558,6 +558,12 @@ const DAILY_QUEST_XP = 40;
 // Адрес сервера (Cloudflare Worker). Пока пусто — игра работает локально, прогресс хранится на устройстве.
 const API_URL = 'https://dropzone-api.dropzone-api.workers.dev';
 
+// ===== Боты и канал (смена на @cardrop_robot / @ASQ_CAR_DROP) =====
+// Игровой бот: то же мини-приложение, что раньше у @dropezone_bot
+const GAME_BOT = { username: 'cardrop_robot', title: 'DROPZONE', appUrl: 'https://t.me/cardrop_robot/dropezone' };
+// Канал игры: вход прямой ссылкой (бот-проверка channel_guardian относится к старому каналу)
+const CHANNEL_INFO = { username: 'ASQ_CAR_DROP', id: -1004468309293, url: 'https://t.me/ASQ_CAR_DROP' };
+
 // ===== Рейтинг (пока только локальный режим, выйдет вместе с номерами) =====
 // «Всё время» — стоимость гаража (машины с деталями и номерами + витрина + номера без машины);
 // «Неделя» — на сколько гараж вырос с понедельника (Москва). Призы топ-10 — в ночь на понедельник.
@@ -625,7 +631,7 @@ const SUPPORT = { url: 'https://t.me/dropezone_help', live: true };
 // Приглашения: ссылка открывает игру с параметром r<ID пригласившего>
 // inviter — пригласившему, когда друг дойдёт до minLevel (защита от накрутки пустыми аккаунтами); friend — другу сразу
 // С релизным обновлением — снова первые суммы (inviterNext/friendNext), но пригласившему тоже только на minLevel друга
-const REFERRAL = { inviterNow: 1e6, friendNow: 150e3, inviterNext: 100e3, friendNext: 50e3, minLevel: 3, link: 'https://t.me/dropezone_bot/dropezone?startapp=r',
+const REFERRAL = { inviterNow: 1e6, friendNow: 150e3, inviterNext: 100e3, friendNext: 50e3, minLevel: 3, link: 'https://t.me/cardrop_robot/dropezone?startapp=r',
   get inviter() { return globalThis.Rules?.nextActive() ? this.inviterNext : this.inviterNow; },
   get friend() { return globalThis.Rules?.nextActive() ? this.friendNext : this.friendNow; } };
 
@@ -634,6 +640,6 @@ Object.assign(globalThis, {
   RARITIES, RARITY_ORDER, COUNTRIES, ORIGINS, CARS, CASES, PRICE_WEIGHT_POW, START_MONEY, GARAGE_START_SLOTS,
   SELL_K, INCOME_K, INCOME_BY, INCOME_SET, OFFLINE_MAX_MS, PART_TIERS, SLOTS, EV_SLOTS, ICE_ONLY, MERGE_CHANCE, MERGE_NEXT, FULL_SET, PART_CASES, SLOT_CASE_MARKUP,
   PART_COUNTS, CAR_COUNTS, PLATES_LOCAL_ONLY, PLATE_LETTERS, PLATE_REGIONS, PLATE_REGIONS_NEXT, PLATE_SCORE, PLATE_RARITY_AT, PLATE_VALUE, PLATE_REAL, PLATE_BUY_K, PLATE_LIMIT_EXTRA, PLATE_STORE, PLATE_CASES, RACE, DUEL, UPGRADE, BOT_NAMES, SECRET_CARS, EXCL_CARS, SECRET_BY_COUNTRY, DAILY, REWARD_CASE, GARAGE,
-  BETA_CAR, COLLECTION_MILESTONES, COUNTRY_REWARDS, COUNTRY_REWARDS_NEXT, PAINT_ENABLED, PAINT_K, PAINT_MIN, PAINTS, NO_PAINT, MUSEUM, ADMIN_IDS, API_URL, REFERRAL, SUPPORT, SEASON, NEXT_LOCAL_ONLY, NEXT_CARS, NEW_CASE_UNTIL, SHOP, SHOP_LIVE, VIP, MARKET, MARKET_AUC, AUCTION, RATING_LOCAL_ONLY, RATING_LIVE, WEEK_PRIZES,
+  BETA_CAR, COLLECTION_MILESTONES, COUNTRY_REWARDS, COUNTRY_REWARDS_NEXT, PAINT_ENABLED, PAINT_K, PAINT_MIN, PAINTS, NO_PAINT, MUSEUM, ADMIN_IDS, API_URL, GAME_BOT, CHANNEL_INFO, REFERRAL, SUPPORT, SEASON, NEXT_LOCAL_ONLY, NEXT_CARS, NEW_CASE_UNTIL, SHOP, SHOP_LIVE, VIP, MARKET, MARKET_AUC, AUCTION, RATING_LOCAL_ONLY, RATING_LIVE, WEEK_PRIZES,
   XP, XP_GRIND_DAY, PART_COOLDOWN_MS, PART_CASE_PAUSE_MS, xpNeed, levelMoney, LEVEL_GIFTS, PASS, passPrem, NEWBIE_QUESTS, DAILY_QUESTS, DAILY_QUESTS_PER_DAY, DAILY_QUEST_XP, DAILY_NEXT, DAILY_ALL_BONUS, WEEKLY_QUESTS, WEEKLY_PER_WEEK, WEEKLY_XP,
 });
