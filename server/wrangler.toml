@@ -1,0 +1,18 @@
+# Сервер DROPZONE: AUTO на Cloudflare Workers
+name = "dropzone-api"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+# База данных D1. database_id подставляется после `npx wrangler d1 create dropzone`
+[[d1_databases]]
+binding = "DB"
+database_name = "dropzone"
+database_id = "eca9d404-4ca0-46b6-9ef5-e24b87ad249a"
+
+# Токен бота хранится как секрет: npx wrangler secret put BOT_TOKEN
+# (вводит владелец сам, в коде и в git его нет)
+
+
+# Расписание: в ночь на понедельник 00:05 по Москве (21:05 UTC воскресенья) — недельные призы рейтинга
+[triggers]
+crons = ["5 21 * * SUN", "0 * * * *"]
