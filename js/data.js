@@ -556,7 +556,7 @@ const DAILY_QUEST_XP = 40;
 
 // ===== Сервер =====
 // Адрес сервера (Cloudflare Worker). Пока пусто — игра работает локально, прогресс хранится на устройстве.
-const API_URL = 'https://xuia-car.pozzistory666.workers.dev/';
+const API_URL = 'https://xuia-car.pozzistory666.workers.dev';
 
 // ===== Боты и канал (смена на @cardrop_robot / @ASQ_CAR_DROP) =====
 // Игровой бот: то же мини-приложение, что раньше у @dropezone_bot
