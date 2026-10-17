@@ -1,0 +1,60 @@
+/* ===== Админ-приложение (admin.html) — поверх style.css игры ===== */
+body { background: var(--bg); user-select: text; -webkit-user-select: text; }
+#app { padding-bottom: 40px; }
+.aa-head { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 8px; padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background: color-mix(in srgb, var(--bg) 85%, transparent); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+.aa-title { font-size: 28px; font-weight: 800; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.aa-back { color: var(--accent); font-size: 17px; padding: 4px 8px 4px 0; }
+#aa-screen { padding: 0 16px; max-width: 640px; margin: 0 auto; animation: enter .3s var(--ios); }
+.aa-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+.aa-tile { background: var(--card); border-radius: 14px; padding: 12px 10px; }
+.aa-tile b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.aa-tile span { font-size: 12px; color: var(--hint); }
+.aa-sort { display: flex; gap: 6px; overflow-x: auto; margin: 10px 0; padding-bottom: 2px; }
+.aa-sort button { flex: none; padding: 7px 12px; border-radius: 999px; background: var(--fill); font-size: 14px; font-weight: 600; color: var(--hint); }
+.aa-sort button.on { background: var(--accent); color: #fff; }
+.aa-row-sub { font-size: 13px; color: var(--hint); margin-top: 2px; }
+.aa-plate { display: inline-block; font-family: 'Roboto', Arial, sans-serif; font-weight: 600; font-size: 14px; color: #2f2e29; background: #f4f4f1;
+  border: 2px solid #3d3c36; border-radius: 5px; padding: 1px 6px; letter-spacing: .5px; white-space: nowrap; }
+.aa-plate i { font-style: normal; border-left: 2px solid #3d3c36; margin-left: 5px; padding-left: 5px; font-size: 12px; }
+.aa-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.aa-sec { margin-top: 18px; }
+.aa-note { font-size: 13px; color: var(--hint); margin: 6px 4px; }
+.aa-progress { height: 8px; border-radius: 4px; background: var(--fill); overflow: hidden; margin-top: 10px; }
+.aa-progress i { display: block; height: 100%; background: var(--accent); transition: width .3s; }
+.aa-check { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+.aa-check input { width: 20px; height: 20px; }
+.aa-empty { text-align: center; padding: 30px 16px; color: var(--hint); }
+.pill.armed, .btn.armed { background: var(--bad) !important; color: #fff !important; }
+.admin-input { box-sizing: border-box; }
+.aa-notify { padding: 12px 14px; margin: 12px 0 0; align-items: flex-start; }
+.aa-notify input { margin-top: 2px; flex: none; }
+/* онлайн на главном экране */
+.aa-online { display: flex; align-items: center; gap: 10px; padding: 12px 16px; margin-bottom: 10px; border-radius: 16px; background: var(--card);
+  border: 1px solid rgba(52, 199, 89, .35); font-size: 15px; }
+.aa-online span { flex: 1; color: var(--hint); }
+.aa-online b { font-size: 22px; font-variant-numeric: tabular-nums; }
+.aa-online b.bump { animation: aa-bump .5s ease; }
+@keyframes aa-bump { 40% { transform: scale(1.25); color: #34c759; } }
+.aa-dot { width: 10px; height: 10px; border-radius: 50%; background: #34c759; box-shadow: 0 0 0 0 rgba(52, 199, 89, .6); animation: aa-pulse 2s infinite; }
+@keyframes aa-pulse { 0% { box-shadow: 0 0 0 0 rgba(52, 199, 89, .6); } 70% { box-shadow: 0 0 0 8px rgba(52, 199, 89, 0); } 100% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); } }
+.aa-usage { margin-bottom: 12px; padding: 12px 14px; }
+.aa-use { margin-top: 10px; }
+.aa-use .aa-progress { margin: 6px 0 4px; }
+
+/* приглашения в карточке игрока */
+.ref-line { font-size: 14px; line-height: 1.4; }
+.ref-line.ok { color: var(--ok, #30d158); }
+.ref-line.warn { color: #ff9f0a; }
+.ref-line.bad { color: var(--bad, #ff453a); }
+.ref-line .aa-row-sub { color: var(--hint); }
+.chip.ok { color: #30d158; }
+
+/* история игрока */
+.hist-list { max-height: 520px; overflow-y: auto; }
+.hist-row .sub { line-height: 1.45; }
+.hist-plus { color: #30d158; }
+.hist-minus { color: #ff453a; }
+
+/* фильтры номеров */
+.aa-chips .chip.on { background: var(--accent, #0a84ff); color: #fff; }
