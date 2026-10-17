@@ -166,10 +166,10 @@ function subscribeGate(sub) {
   closeSheet();
   document.body.classList.add('maintenance');
   $('#title').textContent = 'DROPZONE';
+  const chName = globalThis.CHANNEL_INFO ? '@' + CHANNEL_INFO.username : 'канале игры';
   $('#screen').innerHTML = `<div class="card empty-state maint sub-gate">${emo('📢', 56)}
-    <h3>Подпишись на канал игры</h3>
+    <h3>Подпишись на канал ${chName}</h3>
     <p class="muted">Новости, промокоды и ивенты — первым делом там. Подпишись, чтобы войти в игру 🔒</p>
-    <p class="muted small">Откроется бот-проверка: подтверди, что ты не бот — и он добавит тебя в канал. Потом вернись сюда и нажми «Я подписался»</p>
     <button class="btn" id="sub-open">Подписаться</button>
     <button class="btn gray" id="sub-check">Я подписался</button></div>`;
   return new Promise(resolve => {

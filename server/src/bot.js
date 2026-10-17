@@ -1,10 +1,13 @@
-// ===== Бот @dropezone_bot: ответ на /start и оформление =====
+// ===== Бот @cardrop_robot (ранее @dropezone_bot): ответ на /start и оформление =====
+// Токен нового бота — секрет BOT_TOKEN: npx wrangler secret put BOT_TOKEN (значение 8911052980:AAENZ… от @cardrop_robot)
 // Telegram присылает сообщения боту на POST /tg-webhook (подключается кнопкой «Настроить бота» в админ-панели).
 
 const GAME_URL = 'https://f1rst11.github.io/dropzone-auto/';
-export const CHANNEL = '@dropezone_game';
-// вход в канал — через бота-проверку «не бот» (он сам добавляет в @dropezone_game)
-export const CHANNEL_URL = 'https://t.me/channel_guardian_bot?start=CHK-1004402834072';
+export const GAME_BOT_USERNAME = 'cardrop_robot';       // игровой бот
+export const CHANNEL = '@ASQ_CAR_DROP';                 // канал игры (id -1004468309293, первый бот @cardrop_robot добавлен админом)
+export const CHANNEL_ID = -1004468309293;
+// вход в канал — прямая ссылка (бот-проверка channel_guardian относилась к старому каналу @dropezone_game)
+export const CHANNEL_URL = 'https://t.me/ASQ_CAR_DROP';
 
 const TEXTS = {
   // «Что умеет этот бот?» — видно до нажатия «Старт» (до 512 символов)
@@ -84,6 +87,8 @@ export async function handleWebhook(request, env, pay) {
 
 // настройка бота одной кнопкой: вебхук, команды, описания, кнопка «Играть» у поля ввода
 export async function setupBot(env, origin) {
+  // ожидаемое имя бота — из GAME_BOT (js/data.js): @cardrop_robot
+  const bot = globalThis.GAME_BOT?.username || 'cardrop_robot';
   const steps = [
     ['Вебхук', 'setWebhook', {
       url: origin + '/tg-webhook', secret_token: await webhookSecret(env),
@@ -99,9 +104,16 @@ export async function setupBot(env, origin) {
     const r = await tg(env, method, body);
     report.push({ name, ok: !!r.ok, error: r.ok ? undefined : r.description });
   }
+  // проверка: секрет BOT_TOKEN должен принадлежать нужному боту (@cardrop_robot)
+  const me = await tg(env, 'getMe', {});
+  if (me.ok && me.result?.username && me.result.username.toLowerCase() !== bot) {
+    report.push({ name: 'Бот', ok: false, error: `токен от @${me.result.username}, а ожидается @${bot} — обнови секрет BOT_TOKEN` });
+  } else if (me.ok) {
+    report.push({ name: 'Бот', ok: true });
+  }
   // для проверки подписки бот должен быть админом канала
-  const me = await tg(env, 'getChatMember', { chat_id: CHANNEL, user_id: Number(env.BOT_TOKEN.split(':')[0]) });
-  const isAdm = me.ok && ['administrator', 'creator'].includes(me.result.status);
+  const chMember = await tg(env, 'getChatMember', { chat_id: CHANNEL, user_id: Number(env.BOT_TOKEN.split(':')[0]) });
+  const isAdm = chMember.ok && ['administrator', 'creator'].includes(chMember.result.status);
   report.push({ name: 'Канал', ok: isAdm, error: isAdm ? undefined : 'добавь бота админом в канал ' + CHANNEL });
   return { report };
 }
@@ -238,7 +250,7 @@ export async function handleAdminWebhook(request, env, isAdminId, handlers = {})
     const ok = isAdminId(msg.from?.id);
     await tg(env, 'sendMessage', ok
       ? { chat_id: msg.chat.id, text: '🛠 Админка DROPZONE: AUTO', reply_markup: adminButton }
-      : { chat_id: msg.chat.id, text: 'Это служебный бот. Игра — @dropezone_bot 🏁' }, env.ADMIN_BOT_TOKEN);
+      : { chat_id: msg.chat.id, text: `Это служебный бот. Игра — @${GAME_BOT_USERNAME} 🏁` }, env.ADMIN_BOT_TOKEN);
   }
   return new Response('ok');
 }
