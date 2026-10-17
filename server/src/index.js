@@ -32,8 +32,7 @@ import { handleWebhook, setupBot, isSubscribed, CHANNEL_URL, notifyReferral, sub
   handleAdminWebhook, setupAdminBot, sendBroadcast, notifySeasonPrize, postSeasonTop, tg, notifyPurchase, CHANNEL, notifyReferralPaid } from './bot.js';
 
 const Rules = globalThis.Rules;
-const ALLOWED_ORIGINS = [
-  'https://f1rst11.github.io', 
+const ALLOWED_ORIGINS = [ 
   'http://localhost:5173', 
   'https://xuia-car-game.pages.dev'  // <-- добавь эту строку
 ];
