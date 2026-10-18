@@ -224,7 +224,7 @@ export async function isSubscribed(env, userId, fresh) {
 
 // ===== Админ-бот: только кнопка «Открыть админку» (админ-приложение admin.html) =====
 // Токен — секрет ADMIN_BOT_TOKEN (владелец вводит сам: npx wrangler secret put ADMIN_BOT_TOKEN)
-export const ADMIN_APP_URL = 'https://f1rst11.github.io/dropzone-auto/admin.html';
+export const ADMIN_APP_URL = 'https://aimerge3-oss.github.io/xuia_car/admin.html';
 const adminButton = { inline_keyboard: [[{ text: '🛠 Открыть админку', web_app: { url: ADMIN_APP_URL } }]] };
 
 export async function handleAdminWebhook(request, env, isAdminId, handlers = {}) {
