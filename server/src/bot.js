@@ -2,7 +2,7 @@
 // Токен нового бота — секрет BOT_TOKEN: npx wrangler secret put BOT_TOKEN (значение 8911052980:AAENZ… от @cardrop_robot)
 // Telegram присылает сообщения боту на POST /tg-webhook (подключается кнопкой «Настроить бота» в админ-панели).
 
-const GAME_URL = 'https://xuia-car-game.pages.dev/';
+const GAME_URL = 'https://aimerge3-oss.github.io/xuia_car/';
 export const GAME_BOT_USERNAME = 'cardrop_robot';       // игровой бот
 export const CHANNEL = '@ASQ_CAR_DROP';                 // канал игры (id -1004468309293, первый бот @cardrop_robot добавлен админом)
 export const CHANNEL_ID = -1004468309293;
