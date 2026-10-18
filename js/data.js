@@ -573,7 +573,7 @@ const WEEK_PRIZES = [10e6, 5e6, 3e6, 1e6, 1e6, 1e6, 1e6, 1e6, 1e6, 1e6];
 
 // ===== Релизное обновление: пока только в браузере (локальный режим) =====
 // Магазин, торговая площадка, контейнеры… В Telegram не видны, пока здесь true.
-const NEXT_LOCAL_ONLY = true;
+const NEXT_LOCAL_ONLY = false;
 
 // Магазин за Telegram Stars (в тестовой версии оплата имитируется)
 const SHOP = {
